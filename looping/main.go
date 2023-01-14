@@ -22,16 +22,8 @@ func main() {
 
 	for _, letter := range kalimat{
 		switch string(letter){
-		case "a":
-			fmt.Println("a")
-		case "i":
-			fmt.Println("i")
-		case "u":
-			fmt.Println("u")
-		case "e":
-			fmt.Println("e")
-		case "o":
-			fmt.Println("o")
+		case "a","i","u","e","o":
+			println("Vokal",string(letter))
 		}
 	}
 }
