@@ -2,16 +2,20 @@ package main
 
 import "fmt"
 
-type Gamer struct {
+//membuat struct
+type Gamer struct { 
 	Name string
 	Games []string
 }
 
-func (gamer *Gamer) AddGame(game string){
+// menambah asterik pada tipe gamer sebagai keluaran agar tidak berubah
+func (gamer *Gamer) AddGame(game string){ 
 	gamer.Games = append(gamer.Games, game)
 }
 
-func main(){
+
+// main func
+func main(){ 
 	nanda := Gamer{Name: "Nanda"}
 	nanda.AddGame("GTA")
 	nanda.AddGame("ML")
