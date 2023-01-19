@@ -1,0 +1,23 @@
+{{ template "layout" .}}
+
+{{ define "main" }}
+
+{{ range .}}
+    
+    <div class="text box-with-shadow">
+        Nama : {{ .Name }} </br>
+        NIM : {{ .NIM }} </br>
+        Email : {{ .Email }} </br>
+    </div>
+
+    
+
+{{ end }}
+
+<div>
+    <a href="http://localhost:8080/addmahasiswa">
+        <button>TAMBAH</button>
+    </a>
+</div>
+
+{{ end }}

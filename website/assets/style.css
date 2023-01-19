@@ -1,0 +1,23 @@
+.header {
+    margin-bottom: 30px;
+}
+
+.box-with-shadow {
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 10px #ababab;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.text {
+    color :rgb(0, 0, 0)
+}
+
+.footer{
+    position: absolute;
+    right: 10px;
+    width: 200px;
+    border: 3px solid #ff0000;
+    padding: 10px;
+}
