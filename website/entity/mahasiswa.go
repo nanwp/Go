@@ -1,7 +1,7 @@
 package entity
 
 type Mahasiswa struct{
-	NIM string
+	NIM int
 	Name string
 	Email string
 	Uas int

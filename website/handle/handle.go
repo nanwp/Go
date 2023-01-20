@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"path"
+	"strconv"
 	"website/entity"
 )
 
@@ -70,8 +71,10 @@ func Process(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		intNim, err := strconv.Atoi(r.Form.Get("nim"))
+
 		newData := entity.Mahasiswa{
-			NIM:   r.Form.Get("nim"),
+			NIM:   intNim,
 			Name:  r.Form.Get("name"),
 			Email: r.Form.Get("email"),
 		}
