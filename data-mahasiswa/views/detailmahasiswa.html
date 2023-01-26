@@ -1,0 +1,22 @@
+{{ template "layout" .}}
+
+{{ define "main" }}
+
+{{ range .}}
+    
+    <div class="text box-with-shadow">
+        Nama : {{ .Name }} <br>
+        NIM : {{ .NRP }} <br>
+        Anak - Ke : {{ .AnakKe }} <br>
+        Kota Asal : {{ .KotaAsal }} <br>
+        Tempat Lahir : {{ .TempatLahir }} <br>
+        Tanggal Lahir : {{ .TanggalLahir }} <br>
+        Agama : {{ .Agama }}<br>
+        
+    </div>
+
+    
+
+{{ end }}
+
+{{ end }}

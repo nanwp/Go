@@ -1,0 +1,25 @@
+{{ template "layout" .}}
+
+{{ define "main" }}
+
+{{ range .}}
+    
+    <div class="text box-with-shadow">
+        Nama : {{ .Name }} </br>
+        NIM : {{ .NRP }} </br>
+        <a href="/detailmahasiswa?id="+"">
+            <button>Detail</button>
+        </a>
+    </div>
+
+    
+
+{{ end }}
+
+<div>
+    <a href="/addmahasiswa">
+        <button>TAMBAH</button>
+    </a>
+</div>
+
+{{ end }}
