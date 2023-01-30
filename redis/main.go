@@ -20,8 +20,8 @@ func newRedisClient(host string, password string) *redis.Client {
 }
 
 func main() {
-	redisHost := "103.171.182.206:6379"
-	redisPassword := "PassRedis"
+	redisHost := "localhost:6379"
+	redisPassword := ""
 
 	rdb := newRedisClient(redisHost, redisPassword)
 
