@@ -21,7 +21,7 @@ func (h handler) AddBarang(w http.ResponseWriter, r *http.Request) {
 	var barang models.Barang
 	json.Unmarshal(body, &barang)
 
-	if result := h.DB.Create(&barang); result.Error != nil {
+	if result := h.DB.Table("tbl_barang").Create(&barang); result.Error != nil {
 		fmt.Println(result.Error)
 	}
 

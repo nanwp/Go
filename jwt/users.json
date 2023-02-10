@@ -1,0 +1,13 @@
+[
+    {
+        "username": "nanda",
+        "password": "password123",
+        "email": "nanda@hayat.net.id",
+        "group": "admin"
+    },{
+        "username": "salman",
+        "password": "pass123",
+        "email": "salman@gmail.com",
+        "group": "public" 
+    }
+]

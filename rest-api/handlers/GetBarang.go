@@ -15,9 +15,10 @@ func (h handler) GetBarang(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, _ := strconv.Atoi(vars["id"])
 
-	var barang models.Barang 
 
-	if result := h.DB.First(&barang, id); result.Error != nil {
+	var barang models.Barang
+
+	if result := h.DB.Table("tbl_barang").First(&barang, id); result.Error != nil {
 		fmt.Println(result.Error)
 	}
 

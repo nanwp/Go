@@ -11,7 +11,9 @@ func (h handler) GetAllBarang(w http.ResponseWriter, r *http.Request) {
 
 	var barang [] models.Barang
 
-	if result := h.DB.Find(&barang); result.Error != nil {
+	h.DB.Table("tbl_barang")
+
+	if result := h.DB.Table("tbl_barang").Find(&barang); result.Error != nil {
 		fmt.Println(result.Error)
 	}
 
