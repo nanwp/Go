@@ -1,7 +1,7 @@
 package main
 
 import (
-	"pustaka-api/entity"
+	"pustaka-api/book"
 	"pustaka-api/handler"
 	"pustaka-api/models"
 
@@ -11,22 +11,18 @@ import (
 func main() {
 	router := gin.Default()
 
-	tbl := models.Connect().Table("tbl_book")
+	api := router.Group("/api")
 
-	bookRepository := entity.NewRepository(tbl)
-	bookService := entity.NewService(bookRepository)
+	tbl := models.Connect()
 
-	bookRequest := entity.BookRequest{
-		Title:       "Nanda Story Happy",
-		Price:       "79000",
-	}
+	bookRepository := book.NewRepository(tbl)
+	bookService := book.NewService(bookRepository)
+	bookHandler := handler.NewBookHandler(bookService)
 
-	bookService.Create(bookRequest)
-
-	router.GET("/", handler.RootHandler)
-	router.GET("/hello", handler.HelloHandler)
-	router.GET("/books/:id/:title", handler.BooksHandler)
-	router.GET("/books", handler.QueryHandler)
-	router.POST("/books", handler.PostBooksHandler)
+	api.GET("/books/:id", bookHandler.GetBook)
+	api.GET("/books", bookHandler.GetBooks)
+	api.POST("/books", bookHandler.CreateBooksHandler)
+	api.PUT("/books/:id", bookHandler.UpdateBooksHandler)
+	api.DELETE("/books/:id", bookHandler.DeleteBook)
 	router.Run()
 }

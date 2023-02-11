@@ -1,4 +1,4 @@
-package entity
+package book
 
 import "time"
 

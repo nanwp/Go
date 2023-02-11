@@ -1,4 +1,4 @@
-package entity
+package book
 
 import "gorm.io/gorm"
 
@@ -6,6 +6,8 @@ type Repository interface {
 	FindAll() ([]Book, error)
 	FindByID(ID int) (Book, error)
 	Create(book Book) (Book, error)
+	Update(book Book) (Book, error)
+	Delete(book Book) (Book, error)
 }
 
 type repository struct {
@@ -19,7 +21,7 @@ func NewRepository(db *gorm.DB) *repository{
 func (r *repository) FindAll() ([]Book, error){
 	var books []Book
 
-	err := r.db.Find(&books).Error
+	err := r.db.Table("tbl_book").Find(&books).Error
 
 	return books, err
 }
@@ -27,13 +29,25 @@ func (r *repository) FindAll() ([]Book, error){
 func (r *repository) FindByID(ID int) (Book, error){
 	var book Book
 
-	err := r.db.Find(&book, ID).Error
+	err := r.db.Table("tbl_book").Find(&book, ID).Error
 
 	return book, err
 }
 
 func (r *repository) Create(book Book) (Book, error){
-	err := r.db.Create(&book).Error
+	err := r.db.Table("tbl_book").Create(&book).Error
+
+	return book, err
+}
+
+func (r *repository) Update(book Book) (Book, error){
+	err := r.db.Table("tbl_book").Save(&book).Error
+
+	return book, err
+}
+
+func (r *repository) Delete(book Book) (Book, error){
+	err := r.db.Table("tbl_book").Delete(book).Error
 
 	return book, err
 }
