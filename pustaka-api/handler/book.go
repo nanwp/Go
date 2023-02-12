@@ -20,6 +20,31 @@ func NewBookHandler(bookService book.Service) *bookHandler {
 	}
 }
 
+// func (h *bookHandler) BasicAuth(c *gin.Context) {
+
+// 	username, password, hasAuth := c.Request.BasicAuth()
+// 	db := models.Connect()
+// 	userRepository := user.NewRepository(db)
+// 	userService := user.NewService(userRepository)
+
+// 	a, _ := userService.FindAll()
+
+// 	for _, ac := range a {
+// 		if hasAuth && username == ac.Username && password == ac.Password {
+// 			c.JSON(http.StatusBadRequest, gin.H{
+// 				"username": username,
+// 			})
+// 			return
+// 		} else {
+// 			c.JSON(http.StatusBadRequest, gin.H{
+// 				"error": "error",
+// 			})
+// 			return
+// 		}
+// 	}
+
+// }
+
 func (h *bookHandler) GetBooks(c *gin.Context) {
 	books, err := h.bookService.FindAll()
 	if err != nil {

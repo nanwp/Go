@@ -3,6 +3,7 @@ package main
 import (
 	"pustaka-api/book"
 	"pustaka-api/handler"
+	"pustaka-api/middleware"
 	"pustaka-api/models"
 
 	"github.com/gin-gonic/gin"
@@ -10,14 +11,13 @@ import (
 
 func main() {
 	router := gin.Default()
+	db := models.Connect()
 
-	api := router.Group("/api")
-
-	tbl := models.Connect()
-
-	bookRepository := book.NewRepository(tbl)
+	bookRepository := book.NewRepository(db)
 	bookService := book.NewService(bookRepository)
 	bookHandler := handler.NewBookHandler(bookService)
+
+	api := router.Group("/api", gin.BasicAuth(middleware.GetUser()))
 
 	api.GET("/books/:id", bookHandler.GetBook)
 	api.GET("/books", bookHandler.GetBooks)
