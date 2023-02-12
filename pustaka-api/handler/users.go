@@ -3,7 +3,6 @@ package handler
 import (
 	"fmt"
 	"net/http"
-	"pustaka-api/models"
 	"pustaka-api/users"
 
 	"github.com/gin-gonic/gin"
@@ -18,16 +17,12 @@ func NewUserHandler(userService users.Service) *userHandler {
 	return &userHandler{userService}
 }
 
-func GetUser() gin.Accounts {
+func (h *userHandler) GetUser() gin.Accounts {
 	user := make(gin.Accounts)
 
-	userRepo := users.NewRepository(models.Connect())
-	userService := users.NewService(userRepo)
-
-	file, _ := userService.FindAll()
+	file, _ := h.userService.FindAll()
 
 	for _, s := range file {
-
 		user[s.Username] = s.Password
 		// pwDecrypt := middleware.HashAndSalt(pwEncrypt)
 	}

@@ -45,11 +45,18 @@ func (s *service) Update(ID int, bookRequestUpdate BookRequestUpdate) (Book, err
 	price, _ := bookRequestUpdate.Price.Int64()
 	rating, _ := bookRequestUpdate.Rating.Int64()
 
-	book.Title = bookRequestUpdate.Title
-	book.Description = bookRequestUpdate.Description
-	book.Price = int(price)
-	book.Rating = int(rating)
-
+	if bookRequestUpdate.Title != "" {
+		book.Title = bookRequestUpdate.Title
+	}
+	if bookRequestUpdate.Description != "" {
+		book.Description = bookRequestUpdate.Description
+	}
+	if bookRequestUpdate.Price != "" {
+		book.Price = int(price)
+	}
+	if bookRequestUpdate.Rating != "" {
+		book.Rating = int(rating)
+	}
 	updateBook, err := s.reppository.Update(book)
 	return updateBook, err
 

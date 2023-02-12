@@ -37,17 +37,28 @@ func main() {
 }
 func basiAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
+
+		userRepo := users.NewRepository(models.Connect())
+		userService := users.NewService(userRepo)
+		userHandler := handler.NewUserHandler(userService)
+
+		
 		auth := strings.SplitN(c.Request.Header.Get("Authorization"), " ", 2)
 		// fmt.Printf("auth: %v\n", auth)
+		if len(auth)!= 2 || auth[0] != "Basic"{
+			respondWithError(401, "Unauthorized", c)
+			return
+		}
 
 		payload, _ := base64.StdEncoding.DecodeString(auth[1])
 		// fmt.Println(payload)
 		pair := strings.SplitN(string(payload), ":", 2)
 		// fmt.Println(pair)
 
-		a := handler.GetUser()
+		a := userHandler.GetUser()
 		// fmt.Println(a)
 		pw := middleware.GetPwd(pair[1])
+
 
 		if len(pair) != 2 || !middleware.ComparePassword(a[pair[0]], pw) {
 			respondWithError(401, "Unauthorized", c)
